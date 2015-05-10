@@ -34,8 +34,8 @@ color("cyan") translate([0,0,0]) rotate([0,90,0]) cylinder(r=yr, h=yh );
 // cross rods
 cr  = 6/2;
 ch = 268;
-translate([0,200,cdist]) rotate([0,90,0]) cylinder(r=cr, h=ch );
-translate([200,0,0]) rotate([-90,0,0]) cylinder(r=cr, h=ch );
+translate([-ch/2,40,347]) rotate([0,90,0]) cylinder(r=cr, h=ch, $fn=16 );
+translate([10,-ch/2,347+cdist]) rotate([-90,0,0]) cylinder(r=cr, h=ch, $fn=16  );
 
 // Z rods
 zr  = 12/2;
@@ -62,3 +62,10 @@ translate([-100,0,0]) rotate([90,0,0]) bearing(model=608);
 wall = 6;
 translate([00,-wall,-100])cube([100,wall,100]);
 translate([-wall,0,-100])cube([wall,100,100]);
+
+uscale = 10;
+color("gray") scale([uscale,uscale,uscale]) rotate([90,0,0]) import("Ultimaker.stl", convexity=10);
+translate([-142,-200,300])cube([284,10,10]);
+ux = 325;
+uy = 338;
+//translate([-ux/2,-uy/2,378])cube([ux,uy,6]);
