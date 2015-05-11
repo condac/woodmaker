@@ -35,7 +35,7 @@ color("cyan") translate([0,0,0]) rotate([0,90,0]) cylinder(r=yr, h=yh );
 cr  = 6/2;
 ch = 268;
 translate([-ch/2,40,347]) rotate([0,90,0]) cylinder(r=cr, h=ch, $fn=16 );
-translate([10,-ch/2,347+cdist]) rotate([-90,0,0]) cylinder(r=cr, h=ch, $fn=16  );
+translate([10,-ch/2-10,347+cdist]) rotate([-90,0,0]) cylinder(r=cr, h=ch, $fn=16  );
 
 // Z rods
 zr  = 12/2;
@@ -66,6 +66,22 @@ translate([-wall,0,-100])cube([wall,100,100]);
 uscale = 10;
 color("gray") scale([uscale,uscale,uscale]) rotate([90,0,0]) import("Ultimaker.stl", convexity=10);
 translate([-142,-200,300])cube([284,10,10]);
+
+// mina träplattor
 ux = 325;
 uy = 338;
+uz = 390;
+
+
+//top
 //translate([-ux/2,-uy/2,378])cube([ux,uy,6]);
+//höger
+translate([-ux/2-wall,-uy/2,0])cube([wall,uy,uz]);
+//vänster
+translate([ux/2,-uy/2,0])cube([wall,uy,uz]);
+//bak
+translate([-ux/2,uy/2,0])cube([ux,wall,uz]);
+//fram
+translate([-ux/2,-uy/2-wall,0])cube([ux,wall,uz]);
+//botten
+//translate([-ux/2,-uy/2,0])cube([ux,uy,wall]);
