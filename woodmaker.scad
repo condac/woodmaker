@@ -56,35 +56,37 @@ pulley();
 //translate([-100,0,0]) rotate([90,0,0]) bearing(model=608);
 
 // Wood walls
-wall = 7;
+wall = 8;
 
 
 uscale = 10;
-//color("gray") scale([uscale,uscale,uscale]) rotate([90,0,0]) import("Ultimaker.stl", convexity=10);
+color("gray") scale([uscale,uscale,uscale]) rotate([90,0,0]) import("Ultimaker.stl", convexity=10);
 translate([-142,-200,300])cube([284,10,10]);
 
 // mina träplattor
-ux = 325;
-uy = 338;
+ux = 325;  //330
+uy = 337.5 -21*2;  //341
 uz = 390+0;
+
+minz = 440;
 
 module wallmount() {
     
-    skruv_distance = wall+3;
+    skruv_distance = 20;
     
     translate([8*1.5-4,0,wall-2])rotate([0,90,0]) wallmount_printed_part();
     color("cyan") translate([-wall-2,0,wall-2])rotate([0,90,0]) cylinder(r=5/2,h=2, $fn=6);
     color("cyan") translate([-wall-2,0,wall-2-skruv_distance])rotate([0,90,0]) cylinder(r=5/2,h=2, $fn=6);
     
-    color("cyan") translate([-wall-2,0,wall-2])rotate([0,90,0]) cylinder(r=3/2,h=25, $fn=16);
-    color("cyan") translate([-wall-2,0,wall-2-skruv_distance])rotate([0,90,0]) cylinder(r=3/2,h=25, $fn=16);
+    color("cyan") translate([-wall-2,0,wall-2])rotate([0,90,0]) cylinder(r=3/2,h=9, $fn=16);
+    color("cyan") translate([-wall-2,0,wall-2-skruv_distance])rotate([0,90,0]) cylinder(r=3/2,h=30, $fn=16);
     
 }
 module wallmount_printed_part() {
     radie = (3+5)/2; // skruv och mutters radie
-    skruv_distance = wall+3;
+    skruv_distance = 20;
     tjock = 6;
-    mutter_m3 = (5 + 0.2)/2;
+    mutter_m3 = (6 + 0.2)/2;
     mutter_z = 2;
     skruv_m3 = (3+0.2)/2;
     
@@ -103,6 +105,7 @@ module wallmount_printed_part() {
     
 }
 translate([-ux/2,0,378+wall/2]) wallmount();
+
 module fras(x=10, y=10, r=4) {
     hull() {
         translate([x,y,0]) cylinder(r=r,h=10, $fn=16);
@@ -113,6 +116,7 @@ fras(x=0,y=30);
 
 slot_l = 20;
 wallplus = wall + 2;
+
 module top() {
     
     slot_w = 8;
@@ -144,7 +148,7 @@ module top() {
 
 module sida() {
     color([0.8,0.8,0.1]) difference() {
-        cube([wall,uy,uz]);
+        cube([wall,uy,minz]);
         //translate([-1,-wall-2+(uy+(wall+2)*2)/5,378+4]) rotate([0,90,0]) fras(x=0,y=(uy+(wall+2)*2)/5);
         translate([-1,uy*1/4-slot_l/2-uy/8,378+4]) rotate([0,90,0]) fras(x=0, y=slot_l); 
         translate([-1,uy*2/4-slot_l/2-uy/8,378+4]) rotate([0,90,0]) fras(x=0, y=slot_l);  
@@ -163,7 +167,7 @@ module sida() {
     }
 }
 //top
-translate([-ux/2,-uy/2,378]) top();
+//translate([-ux/2,-uy/2,378]) top();
 //höger
 translate([-ux/2-wall,-uy/2,0]) sida();
 //vänster
@@ -181,3 +185,7 @@ translate([-ch/2-xr*2,-uy/2,347]) x_rod();
 
 translate([-ux/2,ch/2+xr*2,347+cdist+20]) y_rod();
 translate([-ux/2,-ch/2-xr*2,347+cdist]) y_rod();
+
+//z rods
+// 16cm mellan dom
+// 21mm från bakvägg
