@@ -1,9 +1,9 @@
 z_mellan = 160;
-z_y = 22;
+z_y = 21;
 z_d = 12.6;
 z_hole = 15;
 
-nema_xy = 44;
+nema_xy = 42;
 nema_screw = 31;
 
 screw = 3;
