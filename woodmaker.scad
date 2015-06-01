@@ -213,12 +213,14 @@ module printable_corner(left= 20, right=20, invert=1,top=20) {
                 translate([0,right,-cdist_r-top]) rotate([0,90,0]) cylinder(d=rod*2, h=wall, $fn=cylinder_res);
             }
             hull() {
-                translate([0,0,-wall]) cube([left,wall,wall]);
-                translate([0,0,-wall]) cube([wall,right,wall]);
+                translate([0,0,-wall]) cube([left+rod,wall,wall]);
+                translate([0,0,-wall]) cube([wall,right+rod,wall]);
             }
         }
         translate([left,0,-cdist_l-top]) rotate([-90,0,0]) cylinder(d=rod, h=100, $fn=cylinder_res);
         translate([0,right,-cdist_r-top]) rotate([0,90,0]) cylinder(d=rod, h=100, $fn=cylinder_res);
+        translate([15,8,-5]) cylinder(d=3, h=10, $fn=cylinder_res);
+        translate([8,15,-5]) cylinder(d=3, h=10, $fn=cylinder_res);
     }
 }
 
@@ -229,7 +231,7 @@ module printable_corner(left= 20, right=20, invert=1,top=20) {
 //translate([ux/2,uy/2,378]) rotate([180,0,180]) printable_corner(left=21.2,right=37.5,invert=1,top=13);
 
 //fram vänster
-//translate([-ux/2,-uy/2,378]) rotate([180,0,0]) printable_corner(left=21.2,right=16.5,invert=1,top=13);
+translate([-ux/2,-uy/2,378]) rotate([180,0,0]) printable_corner(left=21.2,right=16.5,invert=1,top=13);
 
 //fram höger
 //translate([ux/2,-uy/2,378]) rotate([180,0,90]) printable_corner(left=16.5,right=21.2,invert=0,top=13);
